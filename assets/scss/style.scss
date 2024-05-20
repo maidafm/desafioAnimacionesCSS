@@ -1,0 +1,253 @@
+@import 'variables';
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    .contenidos {
+      grid-area: titulo;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+      color: $ultra-violet;
+    }
+
+    .contenidos img {
+      height: 50px;
+    }
+
+    aside {
+        grid-area: menu;
+        color: $space-cadet !important;
+        background-color: $fairy-tale !important;
+
+        a {
+            color: $space-cadet !important;
+        }
+    }
+
+    main {
+        grid-area: main;
+        display: grid;
+        place-items: center;
+        overflow-y: auto;
+    }
+
+    .pages {
+      grid-area: pages;
+      display: flex;
+      justify-content: center;
+      
+      a {
+        color: $ultra-violet !important;
+      }
+    }
+
+    footer {
+        grid-area: footer;
+        background-color: $plum-web;
+        display: flex;
+        justify-content: end;
+        color: $space-cadet;
+        text-align: center;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        i {
+            padding-top: 5%;
+        }
+
+        .titulos {
+            display: flex;
+            flex-direction: column;
+            padding-right: 1em;
+            
+        }
+    }
+
+    .card {
+        margin: 1em;
+    }
+
+    .card-body {
+        background-color: $plum-web;
+        color: $space-cadet;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body {
+        .grid-container {
+            display: grid;
+            grid-template-areas: 
+            "menu"
+            "titulo"
+            "main"
+            "pages"
+            "footer";
+            grid-template-columns: 1fr;
+        }
+    
+        main {
+            grid-template-columns: 1fr;
+        }
+        
+        .navbar {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h3 {
+            display: none;
+        }
+    
+        .navbar-nav {
+            align-items: end;
+            
+            a {
+                color: $ultra-violet !important;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+          
+          .card {
+            position: relative;
+            width: 18rem;
+          }
+
+          
+          .card-body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            overflow: hidden;
+          }
+          
+          .card-body p {
+            color: $ultra-violet !important;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s;
+          }
+          
+          .card:hover .card-body p,
+          .card:focus .card-body p {
+            visibility: visible;
+            opacity: 1;
+            animation: fadeIn 0.5s forwards;
+          }
+          
+          .card:hover .card-body,
+          .card:focus .card-body {
+            background-color: $plum-web;
+          }
+          
+          .card:hover .card-img-top,
+          .card:focus .card-img-top {
+            opacity: 0;
+          }
+
+          footer {
+            justify-content: space-around;
+
+            .info {
+                text-align: end;
+            }
+          }
+          
+        }
+}
+
+@media (min-width: 768px) {
+    body {
+        .grid-container {
+            display: grid;
+            grid-template-areas: 
+            "menu titulo titulo"
+            "menu main main"
+            "menu main main"
+            "menu pages pages"
+            "footer footer footer";
+            grid-template-rows: 1fr 10fr 1fr;
+            grid-template-columns: 1fr 10fr 1fr;
+            height: 100vh;
+        }
+
+        .columns {
+            padding-top: 1em;
+            display: flex; 
+            flex-direction: column !important;  
+            text-align: left;
+        }
+        
+    
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 1em;
+        }
+    
+        .card {
+            width: 100%;
+            height: auto;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+          }
+          
+          .card-body {
+            position: absolute;
+            display: hidden;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($plum-web, 0.9); 
+            opacity: 0;
+            transform: rotateY(-180deg);
+            transition: opacity 0.5s, transform 0.5s;
+          }
+          
+          .card:hover .card-body {
+            opacity: 1;
+            transform: rotateY(0deg);
+          }
+          
+          .card-text {
+            opacity: 0; 
+            color: white !important;
+            animation: fadeIn 1s forwards;
+            animation-delay: 0.5s;
+          }
+          
+          .card:hover .card-text {
+            opacity: 1;
+          }
+          
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+    }
+}
